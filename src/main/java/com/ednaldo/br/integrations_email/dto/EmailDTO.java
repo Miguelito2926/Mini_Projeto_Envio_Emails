@@ -1,6 +1,8 @@
 package com.ednaldo.br.integrations_email.dto;
 
 import lombok.Data;
+
+
 @Data
 public class EmailDTO {
 
