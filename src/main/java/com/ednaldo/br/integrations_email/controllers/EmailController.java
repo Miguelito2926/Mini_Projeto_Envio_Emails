@@ -17,7 +17,7 @@ public class EmailController {
     
     @PostMapping
     public ResponseEntity<Void> send(@RequestBody EmailDTO dto) {
-    //    emailService.sendEmail(dto);
+        emailService.sendEmail(dto);
         return ResponseEntity.noContent().build();
     }
 }
