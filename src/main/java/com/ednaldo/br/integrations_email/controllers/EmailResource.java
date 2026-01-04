@@ -1,23 +1,25 @@
 package com.ednaldo.br.integrations_email.controllers;
 
+
 import com.ednaldo.br.integrations_email.dto.EmailDTO;
 import com.ednaldo.br.integrations_email.services.EmailService;
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-@RequiredArgsConstructor
+
 @RestController
 @RequestMapping(value = "/emails")
-public class EmailController {
-    
-    private final EmailService emailService;
-    
-    @PostMapping
-    public ResponseEntity<Void> send(@RequestBody EmailDTO dto) {
-        emailService.sendEmail(dto);
-        return ResponseEntity.noContent().build();
-    }
+public class EmailResource {
+
+	@Autowired
+	private EmailService service;
+	
+	@PostMapping
+	public ResponseEntity<EmailDTO> insert(@RequestBody EmailDTO dto) {
+		service.sendPlainTextEmail(dto);
+		return ResponseEntity.noContent().build();
+	}
 }
